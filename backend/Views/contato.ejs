@@ -1,0 +1,54 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-8 my-5">
+    <h1 class="text-center">Contato</h1>
+    <p class="text-center lead">Adicione ou edite os contatos !</p>
+  </div>
+
+  <%- include('includes/messages') %>
+  <% if(contatoID._id) { %>
+    <form class="my-2" action="/contato/edit/<%= contatoID._id %>" method="post">  
+
+  <%}else{%>
+        <form class="my-2" action="/contato/register" method="post">
+  <%}%>
+        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+            <div class="mb3">
+
+              <label>Nome</label>
+              <input value="<%= contatoID.nome %>" type="text" class="form-control" name="nome">
+            
+            </div>
+             <div class="mb-3">
+
+              <label>sobrenome</label>
+              <input value="<%= contatoID.sobrenome %>" type="text" class="form-control" name="sobrenome">
+            
+            </div>
+             <div class="mb-3">
+
+              <label>email</label>
+              <input value="<%= contatoID.email %>" type="email" class="form-control" name="email">
+            
+            </div>
+             <div class="mb-3">
+
+            <label>telefone</label>
+            <input value="<%= contatoID.telefone %>" type="tel" class="form-control" name="telefone">
+            
+          </div>
+           <% if(contatoID._id) { %>
+          <button type="submit" class="btn btn-primary">Editar</button>
+           <%}else{%>
+              <button type="submit" class="btn btn-primary">Criar</button>
+            <% } %>
+    </form>
+
+  <div class="col-lg-2"></div>
+</div>
+
+<%- include('includes/footer') %>

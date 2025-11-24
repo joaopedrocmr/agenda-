@@ -14,13 +14,37 @@ mongoose.connect(process.env.CONNECTIONSTRING).then(()=>{
     console.log(e);
     
 })
- 
+
+// sessões, mensagens flash, armazenamento de sessões no mongoDB
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const flash = require('connect-flash')
 const routes = require('./routes') //importando as minhas rotas 
 const path = require('path')
+const helmet = require('helmet')
+const csrf = require('csurf')
 
-// Meus midlewares
-const meuMiddleware = require('./backend/middleware/middleware')
+//app.use(helmet()) estou usando localhost o helmet pode me atrapalhar
+app.use(session({
+    secret: 'GHShs_&%he3h4u7',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 dias em milissegundos
+        httpOnly: true
+    }
+}));
 
+
+
+app.use(flash())
+
+
+// Declaração midlewares globais
+const {checkcsfr} = require('./backend/middleware/middleware')
+const {middlewareCsfr} = require('./backend/middleware/middleware')
+const {MiddlewareGlobal} = require('./backend/middleware/middleware')
 
 ////middleware para interpretar a requisição e retornar formato application/form
 app.use(
@@ -37,8 +61,14 @@ app.use(express.json())
 app.set('views', path.resolve(__dirname, 'backend', 'Views'))
 app.set('view engine', 'ejs')
 
-//Middleware Global
-app.use(meuMiddleware)
+app.use(csrf())
+
+//Middlewares Globais
+
+app.use(checkcsfr)
+app.use(middlewareCsfr)
+app.use(MiddlewareGlobal)
+
 //minhas rotas vindo de routes.js
 app.use(routes)
 
@@ -49,15 +79,3 @@ console.log('Acessar http://localhost:3000');
     
 })})
 
-
-//SOBRE PARAMETROS
-// app.get('/test/:id', (req, res) => {
-
-//     const id = req.params.id
-//     const query = req.query
-//     res.send({
-//         id: id,
-//         nome: query.name
-//     });
-    
-// })

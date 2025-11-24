@@ -1,0 +1,60 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-8 my-5">
+    <h1 class="text-center">Crie ou entre com seu login</h1>
+    <p class="text-center lead">Faça login ou crie sua conta abaixo</p>
+      <%- include('includes/messages')%>
+  <div class="row">
+      <div class="col-lg my-4">
+         <h4>Crie seu login</h4>
+           <form class="my-2" action="/login/register" method="post">
+            <input type="hidden" value="<%- csrfToken %>" name="_csrf">
+            <div class="mb-3">
+
+              <label>Seu email</label>
+              <input type="email" class="form-control" name="email">
+            
+            </div>
+            <div class="mb-3">
+              
+              <label>Sua senha</label>
+              <input type="password" class="form-control" name="senha">
+            
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+    </div>
+
+    <div class="col-lg my-4">
+        <h4>Entrar no sistema</h4>
+          
+          <form class="my-2" action="/login/login" method="post">
+            <input type="hidden" value="<%- csrfToken %>" name="_csrf">
+            <div class="mb-3">
+
+              <label>Seu email</label>
+              <input type="email" class="form-control" name="email">
+            
+            </div>
+            <div class="mb-3">
+              
+              <label>Sua senha</label>
+              <input type="password" class="form-control" name="senha">
+            
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+      </div>
+  </div>
+
+
+  <div class="col-lg-2"></div>
+</div>
+
+<%- include('includes/footer') %>

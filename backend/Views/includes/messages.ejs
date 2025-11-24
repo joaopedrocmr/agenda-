@@ -1,0 +1,23 @@
+   <div class="row">
+    <%if(errors.length > 0) {%>
+        <div class="col my-3">
+            <div class="alert alert-danger">
+              <%errors.forEach( err => { %>
+                    <%= err %><br>
+              <% }) %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+    <div class="row">
+    <%if(success.length > 0) {%>
+        <div class="col my-3">
+            <div class="alert alert-success">
+                    <%success.forEach(suc =>{%>
+                      <%= suc %> <br>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+    <% } %>
