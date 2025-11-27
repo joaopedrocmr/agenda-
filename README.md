@@ -14,6 +14,6 @@ Contém a arquitetura MVC dividindo modulos e suas funcionalidades!
 ```
 depois execute:
 ```bash
- npm run dev
+ npm start
 ```
 A url para abrir o servidor local é localhost:3000
