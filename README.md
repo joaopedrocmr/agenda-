@@ -9,6 +9,7 @@ Contém a arquitetura MVC dividindo modulos e suas funcionalidades!
 
 **Para executar a aplicação instale os pacotes:**
 
+No seu terminal:
 ```bash
  npm install
 ```
@@ -16,4 +17,4 @@ depois execute:
 ```bash
  npm start
 ```
-A url para abrir o servidor local é localhost:3000
+Isso iniciara o server, para abrir o servidor local a url é localhost:3000.
