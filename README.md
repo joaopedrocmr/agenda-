@@ -7,14 +7,13 @@ e EJS engine de templates para Node.js que permite gerar HTML dinâmico incorpor
 
 Contém a arquitetura MVC dividindo modulos e suas funcionalidades!
 
-**Para executar a aplicação inicie o node e instale os pacotes:**
+**Para executar a aplicação instale os pacotes:**
 
-inicie o node:
 ```bash
- npm init
+ npm install
 ```
 depois execute:
 ```bash
- npm install
+ npm run dev
 ```
 A url para abrir o servidor local é localhost:3000
